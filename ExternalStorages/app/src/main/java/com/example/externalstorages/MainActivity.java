@@ -1,4 +1,4 @@
-package com.example.externalstorage;
+package com.example.externalstorages;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -19,20 +19,18 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnsavedata, btnreaddata;
-    TextView tvdata;
-    private final String filename = "nguyentiendung";
-    private final String connet = "coder";
-    private final String TAG = getClass().getSimpleName();
 
+    Button btnsavedata,btnreaddata;
+    TextView tvdata;
+    private final String filename="nguyentiendung";
+    private final String connet="coder";
+    private final String TAG=getClass().getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,21 +40,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setweigth();
         setClick();
     }
-
-    public void setweigth() {
-        btnreaddata = (Button) findViewById(R.id.btn_read_data);
-        btnsavedata = (Button) findViewById(R.id.btn_save_data);
-        tvdata = (TextView) findViewById(R.id.tv_data);
+    public  void setweigth(){
+        btnreaddata= (Button) findViewById(R.id.btn_read_data);
+        btnsavedata= (Button) findViewById(R.id.btn_save_data);
+        tvdata= (TextView) findViewById(R.id.tv_data);
     }
-
-    public void setClick() {
+    public void setClick(){
         btnsavedata.setOnClickListener(this);
         btnreaddata.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch (v.getId()){
 
             case R.id.btn_save_data:
                 saveData();
@@ -70,9 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-
-    public void saveData() {
-        if (isExternalStorageReadable()) {
+    public void saveData(){
+        if(isExternalStorageReadable()) {
             FileOutputStream fileOutputStream = null;
             File file;
             try {
@@ -87,13 +82,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        }
+        else {
             Toast.makeText(this, "can't save file ", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void saveData2() {
-        if (isExternalStorageReadable()) {
+    public void saveData2(){
+        if(isExternalStorageReadable()) {
             FileOutputStream fileOutputStream = null;
             File file;
             try {
@@ -109,27 +105,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        }
+        else {
             Toast.makeText(this, "can't save file ", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void readdata() {
-        BufferedReader bf = null;
-        File file = null;
+    public void readdata(){
+        BufferedReader bf=null;
+        File file =null;
 
 
         try {
-            file = new File(Environment.getExternalStorageDirectory(), filename);
-            bf = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String line = "";
-            StringBuilder builder = new StringBuilder();
-            while ((line = bf.readLine()) != null) {
+            file =new File(Environment.getExternalStorageDirectory(),filename);
+            bf= new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String line="";
+            StringBuilder builder =new StringBuilder();
+            while ((line =bf.readLine()) !=null){
                 builder.append(line);
 
             }
             tvdata.setText(builder.toString());
-            Log.d(TAG, builder.toString());
+            Log.d(TAG,builder.toString());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -137,6 +134,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+
+
+
+
+
+
+
+
+
+
 
 
     public boolean isExternalStorageReadable() {
@@ -147,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         return false;
     }
+
 
 
     private void checkAndRequestPermissions() {
@@ -164,5 +172,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), 1);
         }
     }
-
 }

@@ -1,26 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
     <TextView
         android:id="@+id/tv_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
     <Button
-        android:text="save data"
+        android:text="@string/save_data"
         android:id="@+id/btn_save_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
     <Button
-        android:text="read data"
+        android:text="@string/read_data"
         android:id="@+id/btn_read_data"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
